@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react';
 import type { Tournage, ApiResponse } from '../types/types';
 
-const API_URL = 'https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/lieux-de-tournage-a-paris/records?limit=100';
+const limit : number = 100
+
+const API_URL = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/lieux-de-tournage-a-paris/records?limit=${limit}`;
 
 /**
  * Hook personnalisé pour récupérer les données de tournages
