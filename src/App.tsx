@@ -1,22 +1,11 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Accueil from "./pages/Accueil";
-import Analyse from "./pages/Analyse";
+// src/App.tsx
 
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/">Accueil</Link> |{" "}
-        <Link to="/analyses">Analyses</Link> |{" "}
-      </nav>
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/router';
+import './styles/index.css';
 
-      <Routes>
-        <Route path="/" element={<Accueil />} />
-        <Route path="/analyses" element={<Analyse />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+function App() {
+  return <RouterProvider router={router} />;
+}
 
 export default App;
