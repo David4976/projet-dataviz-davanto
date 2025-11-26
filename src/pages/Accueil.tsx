@@ -25,10 +25,10 @@ const Accueil: React.FC = () => {
         className="relative z-10 
             bg-white/10 backdrop-blur-lg border border-white/20
             p-8 rounded-3xl shadow-2xl 
-            max-w-3xl w-full"
+            max-w-3xl w-full flex flex-col items-center text-center"
       >
         <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-          Bienvenue 🎬
+          Projet Dataviz Cinéma 🎬
         </h1>
 
         <p className="text-white/90 mt-4 text-lg">
