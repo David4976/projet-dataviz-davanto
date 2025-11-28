@@ -8,60 +8,23 @@ interface Props {
 }
 
 /**
- * Formate un arrondissement pour l'affichage
- * Ex: "75001" -> "1ᵉʳ arrondissement", "75002" -> "2ᵉ arrondissement", "75020" -> "20ᵉ arrondissement"
- */
-const formatArrondissementDisplay = (ardt: string): string => {
-  if (!ardt) return ardt;
-  
-  let num = ardt.trim();
-  
-  // Si c'est au format 75XXX, on extrait les 2 derniers chiffres
-  if (num.startsWith('75') && num.length === 5) {
-    num = num.slice(3);
-  }
-  
-  const arrNum = parseInt(num, 10);
-  
-  if (isNaN(arrNum) || arrNum < 1 || arrNum > 20) {
-    return ardt;
-  }
-  
-  // Format spécial pour le 1er arrondissement
-  if (arrNum === 1) {
-    return '1ᵉʳ arrondissement';
-  }
-  
-  return `${arrNum}ᵉ arrondissement`;
-};
-
-/**
  * Agrège les tournages par arrondissement et retourne un tableau trié
- * Filtre uniquement les arrondissements de Paris (codes postaux 75xxx)
+ * Les données arrivent déjà formatées depuis useParisData
  */
 const getTournagesParArrondissement = (tournages: Tournage[]) => {
   const countMap = new Map<string, number>();
 
   tournages.forEach((t) => {
-    if (t.ardt_lieu) {
+    if (t.ardt_lieu && t.ardt_lieu.trim() !== '') {
       const arr = t.ardt_lieu.trim();
-      
-      // Filtre : ne garde que les arrondissements de Paris (75xxx)
-      // Accepte les formats : "75001", "75020", ou juste "01", "20"
-      if (arr.startsWith('75') || (arr.length <= 2 && /^\d+$/.test(arr))) {
-        const count = countMap.get(arr) || 0;
-        countMap.set(arr, count + 1);
-      }
+      const count = countMap.get(arr) || 0;
+      countMap.set(arr, count + 1);
     }
   });
 
   // Convertit la Map en tableau et trie par nombre de tournages (décroissant)
   return Array.from(countMap.entries())
-    .map(([arrondissement, count]) => ({ 
-      arrondissement,
-      arrondissementDisplay: formatArrondissementDisplay(arrondissement), // Format pour affichage
-      count 
-    }))
+    .map(([arrondissement, count]) => ({ arrondissement, count }))
     .sort((a, b) => b.count - a.count);
 };
 
@@ -79,7 +42,7 @@ export default function TournagesByArrChart({ data }: Props) {
           <BarChart 
             data={chartData} 
             layout="vertical"
-            margin={{ top: 20, right: 30, left: 80, bottom: 20 }}
+            margin={{ top: 20, right: 50, left: 100, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis 
@@ -89,9 +52,10 @@ export default function TournagesByArrChart({ data }: Props) {
             />
             <YAxis 
               type="category"
-              dataKey="arrondissementDisplay"
-              tick={{ fontSize: 11 }}
-              width={140}
+              dataKey="arrondissement"
+              label={{ value: 'Arrondissements', angle: -90, position: 'insideLeft' }}
+              tick={{ fontSize: 12 }}
+              width={80}
             />
             <Tooltip
               contentStyle={{
