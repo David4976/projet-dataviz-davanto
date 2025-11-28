@@ -1,11 +1,9 @@
-// src/pages/Analyse.tsx
-
 import { useParisData } from '../api/useParisData';
 import { Link } from 'react-router-dom';
 import TournagesByQuartChart from '../components/TournagesByQuartChart';
-import TournagesByTypeChart from '../components/TournagesByTypeChart';
 import TournagesByArrChart from '../components/TournagesByArrChart';
-// import TopRealisateursChart from '../components/TopRealisateursChart';
+import TournagesByTypeChart from '../components/TournagesByTypeChart';
+import TopRealisateursChart from '../components/TopRealisateursChart';
 // import TypesByYearChart from '../components/TypesByYearChart';
 
 function Analyse() {
@@ -58,37 +56,29 @@ function Analyse() {
       {/* Grille de graphiques : 2 colonnes × 3 lignes */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        {/* Graphique 1 : Évolution par année (déjà implémenté) */}
+        {/* Graphique 1 : Évolution par année */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <TournagesByQuartChart data={data || []} />
         </div>
 
-        {/* Graphique 2 : Tournages par arrondissement (MAINTENANT IMPLÉMENTÉ) */}
+        {/* Graphique 2 : Tournages par arrondissement */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <TournagesByArrChart data={data || []} />
         </div>
 
-        {/* Graphique 3 : Tournages par type (MAINTENANT IMPLÉMENTÉ) */}
+        {/* Graphique 3 : Tournages par type */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <TournagesByTypeChart data={data || []} />
         </div>
 
-        {/* Graphique 4 : Top réalisateurs (à implémenter) */}
-        {/* <div className="bg-white rounded-xl shadow-lg p-6">
+        {/* Graphique 4 : Top réalisateurs */}
+        <div className="bg-white rounded-xl shadow-lg p-6">
           <TopRealisateursChart data={data || []} />
-        </div> */}
-        <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 p-6">
-          <h2 className="text-xl font-bold mb-4">🎥 Top réalisateurs</h2>
-          <div className="h-64 flex items-center justify-center">
-            <p className="text-gray-500">Graphique à implémenter</p>
-          </div>
         </div>
 
         {/* Graphique 5 : Types par année (à implémenter) */}
-        {/* <div className="bg-white rounded-xl shadow-lg p-6">
-          <TypesByYearChart data={data || []} />
-        </div> */}
-        <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 p-6">
+        {/* <TypesByYearChart data={data || []} /> */}
+        <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 p-6 lg:col-span-2">
           <h2 className="text-xl font-bold mb-4">📊 Évolution des types par année</h2>
           <div className="h-64 flex items-center justify-center">
             <p className="text-gray-500">Graphique à implémenter</p>
