@@ -8,6 +8,34 @@ interface Props {
 }
 
 /**
+ * Formate un arrondissement pour l'affichage
+ * Ex: "75001" -> "1ᵉʳ arrondissement", "75002" -> "2ᵉ arrondissement", "75020" -> "20ᵉ arrondissement"
+ */
+const formatArrondissementDisplay = (ardt: string): string => {
+  if (!ardt) return ardt;
+  
+  let num = ardt.trim();
+  
+  // Si c'est au format 75XXX, on extrait les 2 derniers chiffres
+  if (num.startsWith('75') && num.length === 5) {
+    num = num.slice(3);
+  }
+  
+  const arrNum = parseInt(num, 10);
+  
+  if (isNaN(arrNum) || arrNum < 1 || arrNum > 20) {
+    return ardt;
+  }
+  
+  // Format spécial pour le 1er arrondissement
+  if (arrNum === 1) {
+    return '1ᵉʳ arrondissement';
+  }
+  
+  return `${arrNum}ᵉ arrondissement`;
+};
+
+/**
  * Agrège les tournages par arrondissement et retourne un tableau trié
  * Filtre uniquement les arrondissements de Paris (codes postaux 75xxx)
  */
@@ -29,7 +57,11 @@ const getTournagesParArrondissement = (tournages: Tournage[]) => {
 
   // Convertit la Map en tableau et trie par nombre de tournages (décroissant)
   return Array.from(countMap.entries())
-    .map(([arrondissement, count]) => ({ arrondissement, count }))
+    .map(([arrondissement, count]) => ({ 
+      arrondissement,
+      arrondissementDisplay: formatArrondissementDisplay(arrondissement), // Format pour affichage
+      count 
+    }))
     .sort((a, b) => b.count - a.count);
 };
 
@@ -57,9 +89,9 @@ export default function TournagesByArrChart({ data }: Props) {
             />
             <YAxis 
               type="category"
-              dataKey="arrondissement"
+              dataKey="arrondissementDisplay"
               tick={{ fontSize: 11 }}
-              width={70}
+              width={140}
             />
             <Tooltip
               contentStyle={{
@@ -68,6 +100,7 @@ export default function TournagesByArrChart({ data }: Props) {
                 borderRadius: '8px',
                 padding: '10px'
               }}
+              formatter={(value: number) => [`${value} tournage${value > 1 ? 's' : ''}`, 'Nombre']}
             />
             <Legend verticalAlign="top" height={36} />
             <Bar

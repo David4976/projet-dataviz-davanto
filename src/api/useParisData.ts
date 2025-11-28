@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import type { Tournage } from '../types/types';
 
-const EXPORT_URL = 'https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/lieux-de-tournage-a-paris/exports/json';
+const DATA_URL = 'https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/lieux-de-tournage-a-paris/exports/json';
 
 /**
  * Hook personnalisé pour récupérer TOUTES les données de tournages
- * Utilise l'endpoint /exports avec suivi de la progression du téléchargement
+ * Transforme uniquement les noms de réalisateurs en majuscules
  */
 export const useParisData = () => {
   const [data, setData] = useState<Tournage[]>([]);
@@ -16,10 +16,10 @@ export const useParisData = () => {
   useEffect(() => {
     const fetchTournages = async () => {
       try {
-        console.log('🔄 Récupération de TOUTES les données via /exports...');
+        console.log('📄 Récupération de TOUTES les données via /exports...');
         setIsLoading(true);
 
-        const response = await fetch(EXPORT_URL);
+        const response = await fetch(DATA_URL);
 
         if (!response.ok) {
           throw new Error(`Erreur HTTP ${response.status}: ${response.statusText}`);
@@ -68,13 +68,21 @@ export const useParisData = () => {
 
         // Conversion en texte puis en JSON
         const text = new TextDecoder('utf-8').decode(chunksAll);
-        const allData: Tournage[] = JSON.parse(text);
+        const rawData: Tournage[] = JSON.parse(text);
 
-        console.log('✅ Données récupérées:', allData.length, 'tournages');
-        console.log('📊 Premier tournage:', allData[0]);
-        console.log('📊 Dernier tournage:', allData[allData.length - 1]);
+        // 🔄 TRANSFORMATION : uniquement les noms de réalisateurs en MAJUSCULES
+        const transformedData = rawData.map(tournage => ({
+          ...tournage,
+          nom_realisateur: tournage.nom_realisateur 
+            ? tournage.nom_realisateur.toUpperCase() 
+            : tournage.nom_realisateur
+        }));
 
-        setData(allData);
+        console.log('✅ Données récupérées et transformées:', transformedData.length, 'tournages');
+        console.log('📊 Premier tournage:', transformedData[0]);
+        console.log('📊 Dernier tournage:', transformedData[transformedData.length - 1]);
+
+        setData(transformedData);
         setError(null);
       } catch (err) {
         console.error('❌ Erreur:', err);
