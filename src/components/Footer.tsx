@@ -5,6 +5,7 @@ const Footer = () => {
   return (
     <footer
       className="
+      relative z-20
         w-full 
         bg-white/10 backdrop-blur-lg border-t border-white/20
         text-white 

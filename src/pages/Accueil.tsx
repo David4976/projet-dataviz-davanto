@@ -19,7 +19,7 @@ const Accueil: React.FC = () => {
       style={{ backgroundImage: 'url("/fond-ecran-accueil.webp")' }}
     >
       {/* Overlay dégradé pour lisibilité */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0 bg-black/50 z-0"></div>
 
       <div
         className="relative z-10 
