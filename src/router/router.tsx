@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom"; // Importe la fonction qui crée un routeur basé sur l'historique du navigateu
-import Layout from "../components/Layout";
+import Layout from "../Layout";
 import Accueil from "../pages/Accueil"; // Importe le composant React représentant la page d'accueil
 import Analyse from "../pages/Analyse"; // Importe le composant React représentant la page d'analyse
 

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 
 interface LayoutProps {
   backgroundImage?: string; // optionnel, pour passer le fond
