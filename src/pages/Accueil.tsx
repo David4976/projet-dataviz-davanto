@@ -19,7 +19,8 @@ const Accueil: React.FC = () => {
       "
       // style={{ backgroundImage: 'url("/fond-ecran-accueil.webp")' }}
     >
-      {/* Overlay dégradé pour lisibilité */}
+      <div className="max-w-3xl w-full flex flex-col items-center text-center bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl shadow-2xl relative z-10">
+        {/* Overlay dégradé pour lisibilité
       <div className="absolute inset-0 bg-black/50 z-0"></div>
 
       <div
@@ -27,7 +28,7 @@ const Accueil: React.FC = () => {
             bg-white/10 backdrop-blur-lg border border-white/20
             p-8 rounded-3xl shadow-2xl 
             max-w-3xl w-full flex flex-col items-center text-center"
-      >
+      > */}
         <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
           Projet Dataviz Cinéma 🎬
         </h1>
