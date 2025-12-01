@@ -51,7 +51,7 @@ function Analyse() {
         📊 Analyse des Tournages à Paris
       </h1>
 
-      <div className="bg-gray-100 p-4 rounded-lg mb-8">
+      <div className="bg-blue-100 p-4 rounded-lg mb-8">
         <p className="text-gray-800">
           <strong>Données récupérées :</strong> {data?.length} tournages
         </p>
@@ -60,27 +60,27 @@ function Analyse() {
       {/* Grille de graphiques : 2 colonnes × 3 lignes */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Graphique 1 : Évolution par année */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-blue-100 rounded-xl shadow-lg p-6">
           <TournagesByQuartChart data={data || []} />
         </div>
 
         {/* Graphique 2 : Tournages par arrondissement */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-blue-100 rounded-xl shadow-lg p-6">
           <TournagesByArrChart data={data || []} />
         </div>
 
         {/* Graphique 3 : Tournages par type */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-blue-100 rounded-xl shadow-lg p-6">
           <TournagesByTypeChart data={data || []} />
         </div>
 
         {/* Graphique 4 : Top réalisateurs */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-blue-100 rounded-xl shadow-lg p-6">
           <TopRealisateursChart data={data || []} />
         </div>
 
         {/* Graphique 5 : Types par année (aires empilées) */}
-        <div className="bg-white rounded-xl shadow-lg p-6 lg:col-span-2">
+        <div className="bg-blue-100 rounded-xl shadow-lg p-6 lg:col-span-2">
           <TypesByYearChart data={data || []} />
         </div>
       </div>

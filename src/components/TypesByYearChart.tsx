@@ -1,7 +1,14 @@
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
-import type { Tournage } from '../types/types';
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import type { Tournage } from "../types/types";
 
 interface Props {
   data: Tournage[];
@@ -34,7 +41,9 @@ const getTypesByYear = (tournages: Tournage[]) => {
   tournages.forEach((t) => {
     if (t.annee_tournage && t.type_tournage) {
       const year = t.annee_tournage;
-      const type = topTypes.includes(t.type_tournage) ? t.type_tournage : 'Autres';
+      const type = topTypes.includes(t.type_tournage)
+        ? t.type_tournage
+        : "Autres";
 
       if (!dataMap.has(year)) {
         dataMap.set(year, {});
@@ -49,29 +58,29 @@ const getTypesByYear = (tournages: Tournage[]) => {
   return Array.from(dataMap.entries())
     .map(([annee, types]) => ({
       annee,
-      ...types
+      ...types,
     }))
     .sort((a, b) => a.annee.localeCompare(b.annee));
 };
 
 // Palette de couleurs pour les différents types
 const COLORS = [
-  '#8b5cf6', // violet
-  '#f59e0b', // orange
-  '#10b981', // vert
-  '#2563eb', // bleu
-  '#ef4444', // rouge
-  '#6b7280'  // gris pour "Autres"
+  "#8b5cf6", // violet
+  "#f59e0b", // orange
+  "#10b981", // vert
+  "#2563eb", // bleu
+  "#ef4444", // rouge
+  "#6b7280", // gris pour "Autres"
 ];
 
 export default function TypesByYearChart({ data }: Props) {
   const chartData = getTypesByYear(data);
-  
+
   // Extraire tous les types uniques présents dans les données
   const allTypes = new Set<string>();
   chartData.forEach((yearData) => {
     Object.keys(yearData).forEach((key) => {
-      if (key !== 'annee') {
+      if (key !== "annee") {
         allTypes.add(key);
       }
     });
@@ -79,8 +88,8 @@ export default function TypesByYearChart({ data }: Props) {
 
   const typesList = Array.from(allTypes).sort((a, b) => {
     // "Autres" en dernier
-    if (a === 'Autres') return 1;
-    if (b === 'Autres') return -1;
+    if (a === "Autres") return 1;
+    if (b === "Autres") return -1;
     return a.localeCompare(b);
   });
 
@@ -90,34 +99,38 @@ export default function TypesByYearChart({ data }: Props) {
         📊 Évolution des types par année
       </h2>
 
-      <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div className="bg-blue-200 rounded-lg shadow-md p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
-          <AreaChart 
+          <AreaChart
             data={chartData}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis
               dataKey="annee"
-              label={{ value: 'Année', position: 'insideBottom', offset: -10 }}
+              label={{ value: "Année", position: "insideBottom", offset: -10 }}
               tick={{ fontSize: 12 }}
             />
             <YAxis
-              label={{ value: 'Nombre de tournages', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: "Nombre de tournages",
+                angle: -90,
+                position: "insideLeft",
+              }}
               tick={{ fontSize: 12 }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                padding: '10px'
+                backgroundColor: "#fff",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "10px",
               }}
             />
-            <Legend 
-              verticalAlign="top" 
+            <Legend
+              verticalAlign="top"
               height={36}
-              wrapperStyle={{ paddingBottom: '10px' }}
+              wrapperStyle={{ paddingBottom: "10px" }}
             />
             {typesList.map((type, index) => (
               <Area
@@ -135,9 +148,9 @@ export default function TypesByYearChart({ data }: Props) {
       </div>
 
       <p className="text-gray-600 text-sm italic mt-4">
-        Ce graphique en aires empilées montre l'évolution des 5 types de productions 
-        les plus fréquents à Paris depuis 2016. Les autres types sont regroupés dans 
-        la catégorie "Autres".
+        Ce graphique en aires empilées montre l'évolution des 5 types de
+        productions les plus fréquents à Paris depuis 2016. Les autres types
+        sont regroupés dans la catégorie "Autres".
       </p>
     </div>
   );

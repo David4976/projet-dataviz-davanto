@@ -38,7 +38,7 @@ export default function TournagesByYearChart({ data }: Props) {
         📈 Évolution du nombre de tournages par année
       </h2>
 
-      <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div className="bg-blue-200 rounded-lg shadow-md p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
           <LineChart
             data={chartData}
