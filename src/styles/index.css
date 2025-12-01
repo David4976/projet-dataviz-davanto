@@ -1,1 +1,10 @@
+/* Import Tailwind */
 @import "tailwindcss";
+
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap");
+
+/* Police globale */
+body {
+  font-family: "Science Gothic", sans-serif;
+}
