@@ -1,7 +1,14 @@
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
-import type { Tournage } from '../types/types';
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import type { Tournage } from "../types/types";
 
 interface Props {
   data: Tournage[];
@@ -33,7 +40,10 @@ export default function TournagesByTypeChart({ data }: Props) {
 
       <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
-          <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 40 }}>
+          <BarChart
+            data={chartData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
+          >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis
               dataKey="type"
@@ -43,15 +53,19 @@ export default function TournagesByTypeChart({ data }: Props) {
               tick={{ fontSize: 11 }}
             />
             <YAxis
-              label={{ value: 'Nombre de tournages', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: "Nombre de tournages",
+                angle: -90,
+                position: "insideLeft",
+              }}
               tick={{ fontSize: 12 }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                padding: '10px'
+                backgroundColor: "#fff",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "10px",
               }}
             />
             <Legend verticalAlign="top" height={36} />
@@ -66,7 +80,7 @@ export default function TournagesByTypeChart({ data }: Props) {
       </div>
 
       <p className="text-gray-600 text-sm italic mt-4">
-        Découvrez quels types de productions sont les plus tournés à Paris : 
+        Découvrez quels types de productions sont les plus tournés à Paris :
         long métrage, série TV, téléfilm, etc.
       </p>
     </div>

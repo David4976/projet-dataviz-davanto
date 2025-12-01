@@ -1,10 +1,10 @@
-import { useParisData } from '../api/useParisData';
-import { Link } from 'react-router-dom';
-import TournagesByQuartChart from '../components/TournagesByQuartChart';
-import TournagesByArrChart from '../components/TournagesByArrChart';
-import TournagesByTypeChart from '../components/TournagesByTypeChart';
-import TopRealisateursChart from '../components/TopRealisateursChart';
-import TypesByYearChart from '../components/TypesByYearChart';
+import { useParisData } from "../api/useParisData";
+import { Link } from "react-router-dom";
+import TournagesByQuartChart from "../components/TournagesByQuartChart";
+import TournagesByArrChart from "../components/TournagesByArrChart";
+import TournagesByTypeChart from "../components/TournagesByTypeChart";
+import TopRealisateursChart from "../components/TopRealisateursChart";
+import TypesByYearChart from "../components/TypesByYearChart";
 
 function Analyse() {
   const { data, isLoading, error } = useParisData();
@@ -14,7 +14,9 @@ function Analyse() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-2">Chargement des données...</h1>
-          <p className="text-gray-600">⏳ Récupération des tournages en cours...</p>
+          <p className="text-gray-600">
+            ⏳ Récupération des tournages en cours...
+          </p>
         </div>
       </div>
     );
@@ -37,16 +39,18 @@ function Analyse() {
   return (
     <div className="p-8 max-w-full mx-auto">
       <nav className="mb-8">
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
         >
           ← Retour à l'accueil
         </Link>
       </nav>
 
-      <h1 className="text-4xl font-bold mb-6">📊 Analyse des Tournages à Paris</h1>
-      
+      <h1 className="text-4xl font-bold mb-6">
+        📊 Analyse des Tournages à Paris
+      </h1>
+
       <div className="bg-gray-100 p-4 rounded-lg mb-8">
         <p className="text-gray-800">
           <strong>Données récupérées :</strong> {data?.length} tournages
@@ -55,7 +59,6 @@ function Analyse() {
 
       {/* Grille de graphiques : 2 colonnes × 3 lignes */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
         {/* Graphique 1 : Évolution par année */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <TournagesByQuartChart data={data || []} />
@@ -80,7 +83,6 @@ function Analyse() {
         <div className="bg-white rounded-xl shadow-lg p-6 lg:col-span-2">
           <TypesByYearChart data={data || []} />
         </div>
-
       </div>
 
       <footer className="mt-12 text-center text-gray-500 text-sm">

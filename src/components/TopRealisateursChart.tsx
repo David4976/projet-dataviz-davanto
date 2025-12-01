@@ -1,7 +1,14 @@
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
-import type { Tournage } from '../types/types';
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import type { Tournage } from "../types/types";
 
 interface Props {
   data: Tournage[];
@@ -15,7 +22,7 @@ const getTopRealisateurs = (tournages: Tournage[], limit: number = 10) => {
   const countMap = new Map<string, number>();
 
   tournages.forEach((t) => {
-    if (t.nom_realisateur && t.nom_realisateur.trim() !== '') {
+    if (t.nom_realisateur && t.nom_realisateur.trim() !== "") {
       const real = t.nom_realisateur.trim();
       const count = countMap.get(real) || 0;
       countMap.set(real, count + 1);
@@ -40,18 +47,22 @@ export default function TopRealisateursChart({ data }: Props) {
 
       <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
-          <BarChart 
-            data={chartData} 
+          <BarChart
+            data={chartData}
             layout="vertical"
             margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-            <XAxis 
+            <XAxis
               type="number"
-              label={{ value: 'Nombre de tournages', position: 'insideBottom', offset: -10 }}
+              label={{
+                value: "Nombre de tournages",
+                position: "insideBottom",
+                offset: -10,
+              }}
               tick={{ fontSize: 12 }}
             />
-            <YAxis 
+            <YAxis
               type="category"
               dataKey="realisateur"
               tick={{ fontSize: 11 }}
@@ -59,18 +70,21 @@ export default function TopRealisateursChart({ data }: Props) {
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                padding: '10px'
+                backgroundColor: "#fff",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "10px",
               }}
-              formatter={(value: number) => [`${value} tournage${value > 1 ? 's' : ''}`, 'Nombre']}
+              formatter={(value: number) => [
+                `${value} tournage${value > 1 ? "s" : ""}`,
+                "Nombre",
+              ]}
             />
             <Legend verticalAlign="top" height={36} />
             <Bar
               dataKey="count"
               name="Tournages"
-              fill="#f59e0b"
+              fill="#C1121F"
               radius={[0, 8, 8, 0]}
             />
           </BarChart>
@@ -78,8 +92,9 @@ export default function TopRealisateursChart({ data }: Props) {
       </div>
 
       <p className="text-gray-600 text-sm italic mt-4">
-        Découvrez les réalisateurs et réalisatrices qui ont le plus tourné à Paris.
-        Ce top 10 révèle les cinéastes les plus actifs dans la capitale française.
+        Découvrez les réalisateurs et réalisatrices qui ont le plus tourné à
+        Paris. Ce top 10 révèle les cinéastes les plus actifs dans la capitale
+        française.
       </p>
     </div>
   );

@@ -1,5 +1,14 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import type { Tournage } from '../types/types';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import type { Tournage } from "../types/types";
 
 interface Props {
   data: Tournage[];
@@ -31,23 +40,30 @@ export default function TournagesByYearChart({ data }: Props) {
 
       <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+          <LineChart
+            data={chartData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis
               dataKey="annee"
-              label={{ value: 'Année', position: 'insideBottom', offset: -10 }}
+              label={{ value: "Année", position: "insideBottom", offset: -10 }}
               tick={{ fontSize: 12 }}
             />
             <YAxis
-              label={{ value: 'Nombre de tournages', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: "Nombre de tournages",
+                angle: -90,
+                position: "insideLeft",
+              }}
               tick={{ fontSize: 12 }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                padding: '10px'
+                backgroundColor: "#fff",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "10px",
               }}
             />
             <Legend verticalAlign="top" height={36} />
@@ -65,8 +81,8 @@ export default function TournagesByYearChart({ data }: Props) {
       </div>
 
       <p className="text-gray-600 text-sm italic mt-4">
-        Ce graphique montre l'évolution du nombre de tournages autorisés à Paris depuis 2016.
-        Identifiez les années de forte activité cinématographique.
+        Ce graphique montre l'évolution du nombre de tournages autorisés à Paris
+        depuis 2016. Identifiez les années de forte activité cinématographique.
       </p>
     </div>
   );
