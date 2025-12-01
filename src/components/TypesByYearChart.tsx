@@ -136,8 +136,7 @@ export default function TypesByYearChart({ data }: Props) {
 
       <p className="text-gray-600 text-sm italic mt-4">
         Ce graphique en aires empilées montre l'évolution des 5 types de productions 
-        les plus fréquents à Paris depuis 2016. Les autres types sont regroupés dans 
-        la catégorie "Autres".
+        les plus fréquents à Paris depuis 2016.
       </p>
     </div>
   );

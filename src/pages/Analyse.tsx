@@ -85,9 +85,9 @@ function Analyse() {
         </div>
       </div>
 
-      <footer className="mt-12 text-center text-gray-500 text-sm">
+      {/* <footer className="mt-12 text-center text-gray-500 text-sm">
         <p>Données fournies par OpenData Paris</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
