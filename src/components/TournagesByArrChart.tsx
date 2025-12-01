@@ -42,7 +42,7 @@ export default function TournagesByArrChart({ data }: Props) {
           <BarChart 
             data={chartData} 
             layout="vertical"
-            margin={{ top: 20, right: 50, left: 100, bottom: 20 }}
+            margin={{ top: 20, right: 50, left: 10, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis 

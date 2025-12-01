@@ -43,7 +43,7 @@ export default function TopRealisateursChart({ data }: Props) {
           <BarChart 
             data={chartData} 
             layout="vertical"
-            margin={{ top: 20, right: 30, left: 150, bottom: 20 }}
+            margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis 
