@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import type { Tournage } from "../types/types";
+import { CHART_COLORS, TOOLTIP_STYLE, GRID_COLOR } from "../types/chartColors";
 
 interface Props {
   data: Tournage[];
@@ -52,7 +53,7 @@ export default function TopRealisateursChart({ data }: Props) {
             layout="vertical"
             margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID_COLOR} />
             <XAxis
               type="number"
               label={{
@@ -69,12 +70,8 @@ export default function TopRealisateursChart({ data }: Props) {
               width={140}
             />
             <Tooltip
-              contentStyle={{
-                backgroundColor: "#fff",
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "10px",
-              }}
+              contentStyle={TOOLTIP_STYLE}
+              wrapperClassName="border border-gray-300"
               formatter={(value: number) => [
                 `${value} tournage${value > 1 ? "s" : ""}`,
                 "Nombre",
@@ -84,7 +81,7 @@ export default function TopRealisateursChart({ data }: Props) {
             <Bar
               dataKey="count"
               name="Tournages"
-              fill="#C1121F"
+              fill={CHART_COLORS.red}
               radius={[0, 8, 8, 0]}
             />
           </BarChart>

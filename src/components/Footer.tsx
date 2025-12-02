@@ -1,19 +1,10 @@
 import { Link } from "react-router-dom";
-// import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer
-      className="
-      relative z-20
-        w-full 
-        bg-white/10 backdrop-blur-lg border-t border-white/20
-        text-white 
-        mt-16
-      "
-    >
+    <footer className="relative z-20 w-full bg-white/10 backdrop-blur-lg border-t border-white/20 text-white mt-16">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* SECTION 1 — À propos */}
+        {/* SECTION 1 – À propos */}
         <div>
           <h3 className="text-xl font-semibold mb-3">À propos du projet</h3>
           <p className="text-white/80 leading-relaxed">
@@ -22,10 +13,9 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* SECTION 2 — Liens utiles */}
+        {/* SECTION 2 – Liens utiles */}
         <div className="text-center">
           <h3 className="text-xl font-semibold mb-3">Liens utiles</h3>
-
           <ul className="space-y-2">
             <li>
               <Link to="/" className="hover:text-purple-300 transition">
@@ -38,20 +28,20 @@ const Footer = () => {
               </Link>
             </li>
             <li className="flex justify-center items-center gap-2">
-              {/* <FaGithub className="text-xl" /> */}
               <a
                 href="https://github.com/ton-projet"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-purple-300 transition"
               >
                 GitHub Projet
               </a>
             </li>
             <li className="flex justify-center items-center gap-2">
-              {/* <FaGithub className="text-xl" /> */}
               <a
                 href="https://github.com/ton-portfolio"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-purple-300 transition"
               >
                 GitHub Portfolio
@@ -60,19 +50,17 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* SECTION 3 — Infos légales */}
+        {/* SECTION 3 – Infos légales */}
         <div className="md:text-right">
-          <h3 className="text-xl font-semibold mb-3">
-            Infos légales & Crédits
-          </h3>
-
-          <p className="text-white/80">© Davanto — Dataviz Cinéma</p>
+          <h3 className="text-xl font-semibold mb-3">Infos légales & Crédits</h3>
+          <p className="text-white/80">© Davanto – Dataviz Cinéma</p>
           <p className="text-white/80">Réalisé par David & Antoine M</p>
           <p className="text-white/80 mt-2">
             Source API :{" "}
             <a
               href="https://opendata.paris.fr"
               target="_blank"
+              rel="noopener noreferrer"
               className="underline hover:text-purple-300"
             >
               OpenData Paris

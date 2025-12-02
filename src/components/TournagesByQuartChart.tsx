@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import type { Tournage } from "../types/types";
+import { CHART_COLORS, TOOLTIP_STYLE, GRID_COLOR } from "../types/chartColors";
 
 interface Props {
   data: Tournage[];
@@ -44,7 +45,7 @@ export default function TournagesByYearChart({ data }: Props) {
             data={chartData}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID_COLOR} />
             <XAxis
               dataKey="annee"
               label={{ value: "Année", position: "insideBottom", offset: -10 }}
@@ -59,19 +60,15 @@ export default function TournagesByYearChart({ data }: Props) {
               tick={{ fontSize: 12 }}
             />
             <Tooltip
-              contentStyle={{
-                backgroundColor: "#fff",
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "10px",
-              }}
+              contentStyle={TOOLTIP_STYLE}
+              wrapperClassName="border border-gray-300"
             />
             <Legend verticalAlign="top" height={36} />
             <Line
               type="monotone"
               dataKey="count"
               name="Tournages"
-              stroke="#2563eb"
+              stroke={CHART_COLORS.deepblue}
               strokeWidth={3}
               activeDot={{ r: 6 }}
               dot={{ r: 3 }}

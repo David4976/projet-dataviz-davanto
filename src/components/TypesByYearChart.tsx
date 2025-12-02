@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import type { Tournage } from "../types/types";
+import { CHART_PALETTE, TOOLTIP_STYLE, GRID_COLOR } from "../types/chartColors";
 
 interface Props {
   data: Tournage[];
@@ -63,16 +64,6 @@ const getTypesByYear = (tournages: Tournage[]) => {
     .sort((a, b) => a.annee.localeCompare(b.annee));
 };
 
-// Palette de couleurs pour les différents types
-const COLORS = [
-  "#8b5cf6", // violet
-  "#f59e0b", // orange
-  "#10b981", // vert
-  "#2563eb", // bleu
-  "#ef4444", // rouge
-  "#6b7280", // gris pour "Autres"
-];
-
 export default function TypesByYearChart({ data }: Props) {
   const chartData = getTypesByYear(data);
 
@@ -105,7 +96,7 @@ export default function TypesByYearChart({ data }: Props) {
             data={chartData}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID_COLOR} />
             <XAxis
               dataKey="annee"
               label={{ value: "Année", position: "insideBottom", offset: -10 }}
@@ -120,12 +111,8 @@ export default function TypesByYearChart({ data }: Props) {
               tick={{ fontSize: 12 }}
             />
             <Tooltip
-              contentStyle={{
-                backgroundColor: "#fff",
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "10px",
-              }}
+              contentStyle={TOOLTIP_STYLE}
+              wrapperClassName="border border-gray-300"
             />
             <Legend
               verticalAlign="top"
@@ -138,8 +125,8 @@ export default function TypesByYearChart({ data }: Props) {
                 type="monotone"
                 dataKey={type}
                 stackId="1"
-                stroke={COLORS[index % COLORS.length]}
-                fill={COLORS[index % COLORS.length]}
+                stroke={CHART_PALETTE[index % CHART_PALETTE.length]}
+                fill={CHART_PALETTE[index % CHART_PALETTE.length]}
                 fillOpacity={0.7}
               />
             ))}

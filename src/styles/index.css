@@ -4,9 +4,17 @@
 /* Import Tailwind */
 @import "tailwindcss";
 
+/* Réinitialisation et configuration globale */
+* {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 /* Police globale */
 body {
   font-family: "Science Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-
