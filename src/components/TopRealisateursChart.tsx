@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import {
   BarChart,
   Bar,
@@ -63,13 +64,63 @@ const getTopRealisateurs = (tournages: Tournage[], limit: number = 10) => {
 };
 
 export default function TopRealisateursChart({ data }: Props) {
-  const chartData = getTopRealisateurs(data);
+  const [selectedYear, setSelectedYear] = useState<string>("all");
+
+  // Extraire les années disponibles
+  const availableYears = useMemo(() => {
+    const years = new Set(data.map(t => t.annee_tournage).filter(Boolean));
+    return Array.from(years).sort();
+  }, [data]);
+
+  // Filtrer les données selon l'année sélectionnée
+  const filteredData = useMemo(() => {
+    if (selectedYear === "all") return data;
+    return data.filter(t => t.annee_tournage === selectedYear);
+  }, [data, selectedYear]);
+
+  const chartData = getTopRealisateurs(filteredData);
 
   return (
     <div className="mb-8 sm:mb-12">
-      <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">
-        🎥 Top 10 des réalisateurs
-      </h2>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-800">
+          🎥 Top 10 des réalisateurs
+        </h2>
+        
+        {/* Filtre d'année */}
+        <div className="flex items-center gap-2">
+          <label htmlFor="year-filter" className="text-sm font-medium text-gray-700">
+            Année :
+          </label>
+          <select
+            id="year-filter"
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
+            className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          >
+            <option value="all">Toutes les années</option>
+            {availableYears.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Indicateur de filtre actif */}
+      {selectedYear !== "all" && (
+        <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 bg-purple-100 text-purple-800 rounded-full text-sm">
+          <span>📅 Année : {selectedYear}</span>
+          <button
+            onClick={() => setSelectedYear("all")}
+            className="hover:bg-purple-200 rounded-full px-1.5 transition-colors"
+            title="Réinitialiser le filtre"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       <div className="bg-blue-200 rounded-lg shadow-md p-3 sm:p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
@@ -128,9 +179,9 @@ export default function TopRealisateursChart({ data }: Props) {
       </div>
 
       <p className="text-gray-600 text-xs sm:text-sm italic mt-3 sm:mt-4">
-        Découvrez les réalisateurs et réalisatrices qui ont le plus tourné à
-        Paris. Ce top 10 révèle les cinéastes les plus actifs dans la capitale
-        française.
+        Découvrez les réalisateurs et réalisatrices qui ont le plus tourné à 
+        Paris{selectedYear !== "all" ? ` en ${selectedYear}` : ""}. 
+        {selectedYear !== "all" && ` ${chartData.length} réalisateur${chartData.length > 1 ? "s" : ""} au classement cette année-là.`}
       </p>
     </div>
   );
