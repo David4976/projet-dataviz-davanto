@@ -29,7 +29,7 @@ const Footer = () => {
             </li>
             <li className="flex justify-center items-center gap-2">
               <a
-                href="https://github.com/ton-projet"
+                href="https://github.com/David4976/projet-dataviz-davanto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-purple-300 transition"
@@ -52,7 +52,9 @@ const Footer = () => {
 
         {/* SECTION 3 – Infos légales */}
         <div className="md:text-right">
-          <h3 className="text-xl font-semibold mb-3">Infos légales & Crédits</h3>
+          <h3 className="text-xl font-semibold mb-3">
+            Infos légales & Crédits
+          </h3>
           <p className="text-white/80">© Davanto – Dataviz Cinéma</p>
           <p className="text-white/80">Réalisé par David & Antoine M</p>
           <p className="text-white/80 mt-2">
