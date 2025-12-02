@@ -85,30 +85,39 @@ export default function TypesByYearChart({ data }: Props) {
   });
 
   return (
-    <div className="mb-12">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">
+    <div className="mb-8 sm:mb-12">
+      <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">
         📊 Évolution des types par année
       </h2>
 
-      <div className="bg-blue-200 rounded-lg shadow-md p-6 border border-gray-200">
+      <div className="bg-blue-200 rounded-lg shadow-md p-3 sm:p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
           <AreaChart
             data={chartData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            margin={{ top: 20, right: 20, left: 10, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke={GRID_COLOR} />
             <XAxis
               dataKey="annee"
-              label={{ value: "Année", position: "insideBottom", offset: -10 }}
-              tick={{ fontSize: 12 }}
+              label={{ 
+                value: "Année", 
+                position: "insideBottom", 
+                offset: -10,
+                style: { fontSize: '0.75rem' }
+              }}
+              tick={{ fontSize: 10 }}
+              angle={-45}
+              textAnchor="end"
+              height={60}
             />
             <YAxis
               label={{
                 value: "Nombre de tournages",
                 angle: -90,
                 position: "insideLeft",
+                style: { fontSize: '0.75rem' }
               }}
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
             />
             <Tooltip
               contentStyle={TOOLTIP_STYLE}
@@ -117,7 +126,7 @@ export default function TypesByYearChart({ data }: Props) {
             <Legend
               verticalAlign="top"
               height={36}
-              wrapperStyle={{ paddingBottom: "10px" }}
+              wrapperStyle={{ paddingBottom: "10px", fontSize: '0.75rem' }}
             />
             {typesList.map((type, index) => (
               <Area
@@ -134,7 +143,7 @@ export default function TypesByYearChart({ data }: Props) {
         </ResponsiveContainer>
       </div>
 
-      <p className="text-gray-600 text-sm italic mt-4">
+      <p className="text-gray-600 text-xs sm:text-sm italic mt-3 sm:mt-4">
         Ce graphique en aires empilées montre l'évolution des 5 types de productions 
         les plus fréquents à Paris depuis 2016.
       </p>

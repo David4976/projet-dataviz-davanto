@@ -40,17 +40,17 @@ export default function TournagesByArrChart({ data }: Props) {
   const chartData = getTournagesParArrondissement(data);
 
   return (
-    <div className="mb-12">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">
+    <div className="mb-8 sm:mb-12">
+      <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">
         📍 Tournages par arrondissement
       </h2>
 
-      <div className="bg-blue-200 rounded-lg shadow-md p-6 border border-gray-200">
+      <div className="bg-blue-200 rounded-lg shadow-md p-3 sm:p-6 border border-gray-200">
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
             data={chartData}
             layout="vertical"
-            margin={{ top: 20, right: 50, left: 10, bottom: 20 }}
+            margin={{ top: 20, right: 30, left: 5, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke={GRID_COLOR} />
             <XAxis
@@ -59,8 +59,9 @@ export default function TournagesByArrChart({ data }: Props) {
                 value: "Nombre de tournages",
                 position: "insideBottom",
                 offset: -10,
+                style: { fontSize: '0.75rem' }
               }}
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
             />
             <YAxis
               type="category"
@@ -69,9 +70,10 @@ export default function TournagesByArrChart({ data }: Props) {
                 value: "Arrondissements",
                 angle: -90,
                 position: "insideLeft",
+                style: { fontSize: '0.75rem' }
               }}
-              tick={{ fontSize: 12 }}
-              width={80}
+              tick={{ fontSize: 10 }}
+              width={60}
             />
             <Tooltip
               contentStyle={TOOLTIP_STYLE}
@@ -81,7 +83,11 @@ export default function TournagesByArrChart({ data }: Props) {
                 "Nombre",
               ]}
             />
-            <Legend verticalAlign="top" height={36} />
+            <Legend 
+              verticalAlign="top" 
+              height={36}
+              wrapperStyle={{ fontSize: '0.875rem' }}
+            />
             <Bar
               dataKey="count"
               name="Tournages"
@@ -92,7 +98,7 @@ export default function TournagesByArrChart({ data }: Props) {
         </ResponsiveContainer>
       </div>
 
-      <p className="text-gray-600 text-sm italic mt-4">
+      <p className="text-gray-600 text-xs sm:text-sm italic mt-3 sm:mt-4">
         Découvrez quels arrondissements parisiens accueillent le plus de
         tournages. Les barres horizontales permettent une lecture facile des
         arrondissements.
