@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
 import type { Tournage } from "../types/types";
 import { CHART_COLORS, TOOLTIP_STYLE, GRID_COLOR } from "../types/chartColors";
@@ -35,6 +36,9 @@ const getTournagesParArrondissement = (tournages: Tournage[]) => {
     .map(([arrondissement, count]) => ({ arrondissement, count }))
     .sort((a, b) => b.count - a.count);
 };
+
+// Couleurs alternées pour l'accessibilité
+const ALTERNATING_COLORS = [CHART_COLORS.blue, "#004d4f"];
 
 export default function TournagesByArrChart({ data }: Props) {
   const chartData = getTournagesParArrondissement(data);
@@ -74,6 +78,7 @@ export default function TournagesByArrChart({ data }: Props) {
               }}
               tick={{ fontSize: 10 }}
               width={60}
+              interval={0}
             />
             <Tooltip
               contentStyle={TOOLTIP_STYLE}
@@ -91,17 +96,23 @@ export default function TournagesByArrChart({ data }: Props) {
             <Bar
               dataKey="count"
               name="Tournages"
-              fill={CHART_COLORS.blue}
               radius={[0, 8, 8, 0]}
-            />
+            >
+              {chartData.map((_, index) => (
+                <Cell 
+                  key={`cell-${index}`} 
+                  fill={ALTERNATING_COLORS[index % 2]} 
+                />
+              ))}
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       <p className="text-gray-600 text-xs sm:text-sm italic mt-3 sm:mt-4">
         Découvrez quels arrondissements parisiens accueillent le plus de
-        tournages. Les barres horizontales permettent une lecture facile des
-        arrondissements.
+        tournages. Les barres horizontales sont triées du plus grand au plus petit nombre de tournages,
+        avec une coloration alternée pour faciliter la lecture.
       </p>
     </div>
   );
