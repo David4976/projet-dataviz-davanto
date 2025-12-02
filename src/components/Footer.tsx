@@ -29,7 +29,7 @@ const Footer = () => {
             </li>
             <li className="flex justify-start sm:justify-center items-center gap-2">
               <a
-                href="https://github.com/ton-projet"
+                href="https://github.com/David4976/projet-dataviz-davanto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-purple-300 transition"
