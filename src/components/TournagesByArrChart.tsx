@@ -71,7 +71,7 @@ export default function TournagesByArrChart({ data }: Props) {
             aria-label="Filtrer par année"
             value={anneeFiltre}
             onChange={(e) => setAnneeFiltre(e.target.value)}
-            className="px-2 py-1 text-xs border border-gray-300 rounded-lg bg-white text-gray-700 shadow-sm hover:border-blue-400"
+            className="px-2 py-1 text-xs border border-gray-300 rounded-lg bg-white text-gray-700 shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
           >
             <option value="">Toutes les années</option>
             {anneesDisponibles.map((annee) => (
