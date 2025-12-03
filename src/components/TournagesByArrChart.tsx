@@ -39,7 +39,7 @@ const getTournagesParArrondissement = (tournages: Tournage[]) => {
 };
 
 // Couleurs alternées pour l'accessibilité
-const ALTERNATING_COLORS = [CHART_COLORS.blue, "#004d4f"];
+const ALTERNATING_COLORS = [CHART_COLORS.blue, CHART_COLORS.green];
 
 export default function TournagesByArrChart({ data }: Props) {
   const anneesDisponibles = Array.from(
