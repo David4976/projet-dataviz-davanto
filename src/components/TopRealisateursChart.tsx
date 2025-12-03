@@ -70,14 +70,14 @@ export default function TopRealisateursChart({ data }: Props) {                 
         </h2>
         
         <div className="flex items-center gap-2">                               {/* Filtre d’année */}
-          <label htmlFor="year-filter" className="text-sm font-medium text-gray-700">
+          <label htmlFor="year-filter" className="text-xs font-medium text-gray-700">
             Année :
           </label>
           <select
             id="year-filter"
             value={selectedYear}                                                 // Valeur actuelle
             onChange={(e) => setSelectedYear(e.target.value)}                   // Mise à jour de l’état
-            className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+            className="px-2 py-1 text-xs border border-gray-300 rounded-lg bg-white text-gray-700 shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
           >
             <option value="all">Toutes les années</option>                      {/* Option par défaut */}
             {availableYears.map((year) => (                                     // Options dynamiques
