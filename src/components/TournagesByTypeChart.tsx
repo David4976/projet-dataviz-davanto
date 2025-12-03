@@ -43,14 +43,14 @@ export default function TournagesByTypeChart({ data }: Props) {
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
             data={chartData}
-            margin={{ top: 20, right: 20, left: 10, bottom: 60 }}
+            margin={{ top: 20, right: 20, left: 5, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke={GRID_COLOR} />
             <XAxis
               dataKey="type"
               angle={-45}
               textAnchor="end"
-              height={100}
+              height={45}
               tick={{ fontSize: 9 }}
               interval={0}
             />
@@ -62,6 +62,7 @@ export default function TournagesByTypeChart({ data }: Props) {
                 style: { fontSize: '0.75rem' }
               }}
               tick={{ fontSize: 10 }}
+              width={60}
             />
             <Tooltip
               contentStyle={TOOLTIP_STYLE}
