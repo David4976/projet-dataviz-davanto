@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"; // Importe la fonction qui crée un routeur basé sur l'historique du navigateu
+import { createBrowserRouter } from "react-router-dom"; // Importe la fonction qui crée un routeur basé sur l'historique du navigateur
 import Layout from "../Layout";
 import Accueil from "../pages/Accueil"; // Importe le composant React représentant la page d'accueil
 import Analyse from "../pages/Analyse"; // Importe le composant React représentant la page d'analyse
@@ -13,4 +13,6 @@ export const router = createBrowserRouter([
       { path: "analyse", element: <Analyse /> },
     ],
   },
-]); // Termine la définition du routeur
+], {
+  basename: "/", // Force le chemin de base pour Vercel
+}); // Termine la définition du routeur
